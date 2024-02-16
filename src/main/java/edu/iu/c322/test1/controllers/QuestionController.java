@@ -14,18 +14,20 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping("/questions")
 public class QuestionController {
     private FileRepository fileRepository;
 
     public QuestionController(FileRepository fileRepository) {
         this.fileRepository = fileRepository;
     }
-    @RequestMapping("/add/{question}")
-    public boolean add(@RequestBody Question question) {
+    @PostMapping("/add")
+    public ResponseEntity<?> add(@RequestBody Question question) {
         try {
-            return fileRepository.add(question);
+            fileRepository.add(question);
+            return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error adding question");
         }
     }
     @GetMapping("/search")

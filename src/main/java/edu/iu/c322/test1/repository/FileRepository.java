@@ -1,6 +1,7 @@
 package edu.iu.c322.test1.repository;
 
 import edu.iu.c322.test1.model.Question;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
