@@ -1,4 +1,7 @@
 name: run junit tests
+permissions:
+  checks: write
+  contents: read
 
 on:
   push:
